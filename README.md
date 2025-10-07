@@ -5,8 +5,10 @@
 
 # FitApp
 
-I’m currently building this demo —  Work in Progress..   👀
-**[GitHubPages View](https://erikaahide.github.io/FitApp/)**
+I’m currently building this demo —  Work in Progress.. 
+
+
+**[👀 GitHubPages](https://erikaahide.github.io/FitApp/)**
 
 
 A strict **diet tracking app** designed for fitness enthusiasts. Everything is pre-defined and aligned to a specific goal (starting with bulking).
