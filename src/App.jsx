@@ -15,7 +15,7 @@ export default function App() {
       <Navbar />
 
       {/* Contenido principal */}
-      <main className="flex-1 container max-w-5xl py-6">
+      <main className="flex-1 container-app py-6">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/calculator" element={<Calculator />} />
