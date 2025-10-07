@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Design tokens con CSS vars (light/dark) */
+:root {
+  --bg: 0 0% 100%;
+  --fg: 222 84% 5%;
+  --card: 0 0% 100%;
+  --muted: 210 16% 96%;
+  --border: 210 16% 90%;
+  /* Barbie-pink agradable */
+  --primary: 330 81% 60%;
+}
+.dark {
+  --bg: 222 50% 6%;
+  --fg: 0 0% 98%;
+  --card: 222 50% 8%;
+  --muted: 222 28% 14%;
+  --border: 222 20% 16%;
+  --primary: 330 81% 60%;
+}
+
+/* Base global */
+@layer base {
+  * { @apply border-border; }
+  html, body, #root { height: 100%; }
+  body { @apply bg-background text-foreground antialiased; }
+}
+
+/* Componentes utilitarios */
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center rounded-2xl px-4 py-2 font-medium shadow-soft
+           transition active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2
+           focus-visible:ring-primary/60;
+  }
+  .btn-primary { @apply bg-primary text-white hover:opacity-90; }
+  .btn-ghost { @apply bg-transparent hover:bg-muted; }
+  .card { @apply rounded-2xl bg-card border p-4 shadow-soft; }
+  .link { @apply hover:underline underline-offset-4; }
+}
