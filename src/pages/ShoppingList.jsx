@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Search, CheckSquare, Square, ClipboardCheck, Trash2, X } from 'lucide-react';
-import { SHOPPING_DATA, ALL_ITEMS } from '../data/shoppingList';
+import { SHOPPING_DATA, ALL_ITEMS } from '../../data/shoppingList';
 
 const LS_KEY = 'fitapp:shopping:v1';
 
