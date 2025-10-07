@@ -9,9 +9,10 @@
   --card: 0 0% 100%;
   --muted: 0 0% 92%;   /* gris suave del fondo de la nav */
   --border: 0 0% 86%;
-  /* Barbie-pink agradable */
   --primary: 90 53% 65%;
-  --primary-soft: 90 53% 90%
+  --primary-soft: 90 53% 90%;
+    /* tono hover para links/botones */
+  --primary-strong: 90 53% 45%;
 }
 .dark {
   --bg: 225 15% 8%;
@@ -21,6 +22,8 @@
   --border: 225 14% 22%;
   --primary: 90 53% 65%;
   --primary-soft: 90 53% 20%;
+    /* En dark, luz para el hover */
+    --primary-strong: 90 53% 72%;
   
 }
 
@@ -49,5 +52,24 @@
 
   /* Grid responsivo que acomoda “pills” automáticamente */
   .grid-autofit { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
-}
+  .link {
+    @apply no-underline transition-colors;
+    color: hsl(var(--primary));
+  }
+  .link:hover {
+    color: hsl(var(--primary-strong));
+    text-decoration: none;
+  }
+   /* Bullets SOLO para recomendaciones */
+   .reco-list li::marker {
+    color: hsl(var(--primary));
+    font-size: 1.1em;
+    content: "✔ ";
+  }
+
+  /* icono distinto por subsección */
+  .reco-list--supps li::marker { content: "🔋 "; }  /* Suplementos */
+  .reco-list--apparel li::marker { content: "⚡ "; } /* Ropa Fitness */
+  }
+
 

@@ -9,5 +9,13 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    <script>
+      (function () {
+        var need = '/FitApp/';
+        if (location.pathname.toLowerCase() === '/fitapp/' && location.pathname !== need) {
+          location.replace(need);
+        }
+      })();
+    </script>    
   </body>
 </html>
