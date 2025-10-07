@@ -5,7 +5,9 @@
 
 # FitApp
 
-I’m currently building this demo —  Work in Progress.. 
+I’m currently building this demo —  Work in Progress..   👀
+**[GitHubPages View](https://erikaahide.github.io/FitApp/)**
+
 
 A strict **diet tracking app** designed for fitness enthusiasts. Everything is pre-defined and aligned to a specific goal (starting with bulking).
 
@@ -20,8 +22,6 @@ This app is inspired by the bodybuilding lifestyle where nutrition is everything
 - **Food Tracker:** Logs every meal with a fixed food list.
 - **Shopping List:** Shopping list of all foods included in the plan.
 - **Fitness Blog:** Tips, recommendations, and links to trusted resources & brands (e.g., Bridman, Raw, Bum, Dragon Pharma, GNC, Gymshark, YoungLA, Dfyne, IG fit clothing profiles).
-
-**[GitHubPages View](https://erikaahide.github.io/FitApp/)**
 
 # Project Goals
 - Provide a clear, structured diet plan without guesswork.
