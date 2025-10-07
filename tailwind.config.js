@@ -5,12 +5,13 @@ export default {
     theme: {
       extend: {
         colors: {
-          background: 'hsl(var(--bg))',
-          foreground: 'hsl(var(--fg))',
-          card: 'hsl(var(--card))',
-          muted: 'hsl(var(--muted))',
-          border: 'hsl(var(--border))',
-          primary: 'hsl(var(--primary))',
+            background: 'hsl(var(--bg))',
+            foreground: 'hsl(var(--fg))',
+            card: 'hsl(var(--card))',
+            muted: 'hsl(var(--muted))',
+            border: 'hsl(var(--border))',
+            primary: 'hsl(var(--primary))',
+            primarySoft: 'hsl(var(--primary-soft))',
         },
         borderRadius: { '2xl': '1rem' },
         boxShadow: { soft: '0 10px 20px rgba(0,0,0,.06)' },

@@ -1,73 +1,99 @@
-import { NavLink } from 'react-router-dom';
-import { Home, Calculator, LayoutDashboard, Utensils, ShoppingCart, BookOpen, Sun, Moon } from 'lucide-react';
+import { Link, NavLink } from 'react-router-dom';
+import { Calculator,  Calendar, Utensils, ShoppingCart, MessageCircleHeart, Sun, Moon } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 function ThemeToggle() {
-  const [dark, setDark] = useState(() => document.documentElement.classList.contains('dark'));
-  useEffect(() => {
-    if (dark) {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-    }
-  }, [dark]);
-  return (
-    <button className="btn btn-ghost" aria-label="Cambiar tema" onClick={() => setDark(d => !d)}>
-      {dark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-    </button>
-  );
-}
+    const [dark, setDark] = useState(() => document.documentElement.classList.contains('dark'));
+  
+    useEffect(() => {
+      if (dark) {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      }
+    }, [dark]);
+  
+    return (
+      <button
+        className="btn btn-primary h-10 w-10 p-0 rounded-2xl shadow-soft"
+        aria-label={dark ? 'Cambiar a claro' : 'Cambiar a oscuro'}
+        onClick={() => setDark(d => !d)}
+        title={dark ? 'Tema claro' : 'Tema oscuro'}
+      >
+        {dark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+      </button>
+    );
+  }
+  
 
 const navItems = [
-  { to: '/', label: 'Home', Icon: Home },
   { to: '/calculator', label: 'Calculadora', Icon: Calculator },
-  { to: '/plan', label: 'Plan', Icon: LayoutDashboard },
-  { to: '/day', label: 'Día', Icon: Utensils },
+  { to: '/plan', label: 'Progreso', Icon: Calendar },
+  { to: '/day', label: 'Plan', Icon: Utensils },
+  { to: '/blog', label: 'Blog', Icon: MessageCircleHeart },
   { to: '/shopping-list', label: 'Compras', Icon: ShoppingCart },
-  { to: '/blog', label: 'Blog', Icon: BookOpen },
 ];
 
 export default function Navbar() {
   return (
     <>
       {/* Top bar (desktop/tablet) */}
-      <header className="sticky top-0 z-40 hidden md:block border-b bg-card/80 backdrop-blur">
-        <div className="container max-w-5xl h-16 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="h-8 w-8 rounded-2xl bg-primary" aria-hidden />
-            <span className="font-semibold">FitApp</span>
-          </div>
-
-          <nav className="flex items-center gap-4">
-            {navItems.map(({ to, label }) => (
-              <NavLink
-                key={to}
-                to={to}
-                className={({ isActive }) =>
-                  `px-3 py-2 rounded-2xl hover:bg-muted ${isActive ? 'bg-muted font-semibold' : ''}`
-                }
+      <header className="sticky top-0 z-40 hidden md:block">
+        <div className="container max-w-5xl py-3">
+          <div className="h-16 rounded-2xl border bg-muted px-4 flex items-center justify-between">
+            {/* Marca -> Home */}
+            <div className="flex items-center gap-2">
+              <Link
+                to="/"
+                className="text-2xl font-semibold text-primary focus:outline-none focus:ring-2 focus:ring-primary/60 rounded-md"
+                aria-label="Ir al inicio"
               >
-                {label}
-              </NavLink>
-            ))}
-          </nav>
+                FitApp
+              </Link>
+            </div>
 
-          <ThemeToggle />
+            {/* Nav icons derecha */}
+            <nav className="flex items-center gap-3">
+              {navItems.map(({ to, label, Icon }) => (
+                <NavLink
+                  key={to}
+                  to={to}
+                  className={({ isActive }) =>
+                    [
+                      'h-10 px-3 rounded-2xl flex items-center gap-2 transition',
+                      isActive
+                        ? 'bg-primary text-white shadow-soft'
+                        : 'text-primary hover:bg-primarySoft'
+                    ].join(' ')
+                  }
+                >
+                  {({ isActive }) => (
+                    <>
+                      <Icon className="h-5 w-5" />
+                      {isActive && <span className="text-sm font-medium">{label}</span>}
+                    </>
+                  )}
+                </NavLink>
+              ))}
+            </nav>
+
+            <ThemeToggle />
+          </div>
         </div>
       </header>
 
       {/* Bottom nav (mobile) */}
       <nav className="md:hidden fixed bottom-0 inset-x-0 z-40 border-t bg-card">
         <ul className="grid grid-cols-5">
-          {navItems.filter((_, i) => i < 5).map(({ to, label, Icon }) => (
+          {navItems.slice(0, 5).map(({ to, label, Icon }) => (
             <li key={to} className="flex">
               <NavLink
                 to={to}
                 className={({ isActive }) =>
                   `flex-1 flex flex-col items-center justify-center h-16 text-xs gap-1
-                   ${isActive ? 'text-primary font-medium' : ''}`
+                   ${isActive ? 'text-primary font-medium' : 'text-foreground'}`
                 }
               >
                 <Icon className="h-5 w-5" />
