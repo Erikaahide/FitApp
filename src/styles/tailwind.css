@@ -60,16 +60,62 @@
     color: hsl(var(--primary-strong));
     text-decoration: none;
   }
-   /* Bullets SOLO para recomendaciones */
-   .reco-list li::marker {
-    color: hsl(var(--primary));
-    font-size: 1.1em;
-    content: "✔ ";
-  }
+/* —— Recos: estilos scoped para NO afectar otras listas —— */
+.reco-list {
+  list-style: none;           /* quitamos bullets nativos */
+  padding-left: 0;
+}
 
-  /* icono distinto por subsección */
-  .reco-list--supps li::marker { content: "🔋 "; }  /* Suplementos */
-  .reco-list--apparel li::marker { content: "⚡ "; } /* Ropa Fitness */
-  }
+/* Bullet custom: puntito con ring suave */
+.reco-list .reco-item {
+  display: flex;
+  align-items: start;
+  gap: 0.6rem;
+  position: relative;
+}
+
+.reco-list .reco-item::before {
+  content: "";
+  flex: none;
+  margin-top: 0.5rem;         /* alinea con texto de 2 líneas */
+  width: 10px;
+  height: 10px;
+  border-radius: 9999px;
+  background: hsl(var(--primary));
+  box-shadow:
+    0 0 0 3px hsl(var(--primary) / 0.15),
+    0 0 0 6px hsl(var(--primary) / 0.05);
+}
+
+/* Link más atractivo (solo dentro de recomendaciones) */
+.reco-list .link {
+  text-underline-offset: 3px;
+  text-decoration-thickness: 2px;
+  color: hsl(var(--fg));
+  text-decoration-color: hsl(var(--primary) / 0.35);
+  transition: transform 150ms ease, color 150ms ease, text-decoration-color 150ms ease;
+}
+
+.dark .reco-list .link {
+  color: hsl(0 0% 98%);
+}
+
+.reco-list .link:hover {
+  color: hsl(var(--primary));
+  text-decoration-color: hsl(var(--primary));
+  transform: translateY(-1px);
+}
+
+/* Tarjetas sutiles y consistentes */
+.reco-card {
+  border: 1px solid hsl(var(--border));
+  background-image:
+    radial-gradient(40% 60% at 0% 0%, hsl(var(--primary) / 0.05), transparent 60%),
+    radial-gradient(50% 40% at 100% 0%, hsl(var(--primary) / 0.04), transparent 60%);
+}
+.dark .reco-card {
+  border-color: hsl(var(--border));
+}
+}
 
 
