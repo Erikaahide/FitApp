@@ -32,6 +32,7 @@
   * { @apply border-border; }
   html, body, #root { height: 100%; }
   body { @apply bg-background text-foreground antialiased; }
+  * { accent-color: hsl(var(--primary)); }
 }
 
 @layer components {
@@ -44,7 +45,97 @@
   .btn-ghost   { @apply bg-transparent hover:bg-muted; }
   .card        { @apply rounded-2xl bg-card border p-4 shadow-soft; }
   .link        { @apply hover:underline underline-offset-4; }
+
+  /* Campos de texto / número */
+  .input {
+    @apply w-full px-3 py-2 rounded-2xl border text-sm outline-none transition
+           placeholder-gray-400 dark:placeholder-gray-500;
+    background-color: hsl(var(--card));
+    color: hsl(var(--fg));
+    border-color: hsl(var(--border));
+  }
+  .input:focus {
+    @apply ring-2;
+    --tw-ring-color: hsl(var(--primary));
+    border-color: transparent;
+  }
+
+    /* Números: más ancho + espacio para el spinner */
+    .input--num {
+      min-width: 2rem;         /* evita pills mini */
+      padding-right: 1rem;  /* deja hueco al spinner */
+      text-align: center;      /* opcional: centrado del valor */
+    }
+
+  /* Select con caret consistente */
+  .select {
+    @apply w-full px-3 py-2 rounded-2xl border text-sm outline-none transition
+           bg-[hsl(var(--card))] text-[hsl(var(--fg))];
+    border-color: hsl(var(--border));
+    background-image:
+      linear-gradient(45deg, transparent 50%, hsl(var(--fg)) 50%),
+      linear-gradient(135deg, hsl(var(--fg)) 50%, transparent 50%),
+      linear-gradient(to bottom, hsl(var(--card)), hsl(var(--card)));
+    background-position:
+      calc(100% - 18px) calc(50% - 3px),
+      calc(100% - 12px) calc(50% - 3px),
+      100% 0;
+    background-size: 6px 6px, 6px 6px, 2.5rem 100%;
+    background-repeat: no-repeat;
+    appearance: none;
+  }
+  .select:focus {
+    @apply ring-2;
+    --tw-ring-color: hsl(var(--primary));
+    border-color: transparent;
+  }
+
+  /* Botones neutrales y primarios (usando tus vars, no colores de Tailwind) */
+  .btn {
+    @apply inline-flex items-center justify-center rounded-2xl px-4 py-2 text-sm font-medium
+           border shadow-soft transition active:scale-[0.98] focus-visible:outline-none
+           focus-visible:ring-2;
+    background-color: hsl(var(--card));
+    color: hsl(var(--fg));
+    border-color: hsl(var(--border));
+    --tw-ring-color: hsl(var(--primary) / 0.6);
+  }
+  .btn-primary {
+    background-color: hsl(var(--primary));
+    color: white;
+    border-color: transparent;
+  }
+  .btn-primary:hover { filter: brightness(0.95); }
+
+  /* Chips (para presets) */
+  .chip { @apply px-3 py-1 rounded-full border text-xs font-medium cursor-pointer select-none; 
+    background-color: hsl(var(--card));
+    color: hsl(var(--fg));
+    border-color: hsl(var(--border));
+  }
+  .chip--active {
+    background-color: hsl(var(--primary));
+    color: white;
+    border-color: transparent;
+  }
+
+  /* Slider (range) verde */
+  .range { @apply w-full appearance-none h-2 rounded-full; background: hsl(var(--border)); }
+  .range:focus { outline: none; }
+  .range::-webkit-slider-thumb {
+    appearance: none; width: 18px; height: 18px; border-radius: 9999px;
+    background: hsl(var(--primary)); border: 2px solid #fff;
+    box-shadow: 0 0 0 4px hsl(var(--primary) / 0.25);
+    cursor: pointer;
+  }
+  .range::-moz-range-thumb {
+    width: 18px; height: 18px; border-radius: 9999px;
+    background: hsl(var(--primary)); border: 2px solid #fff;
+    box-shadow: 0 0 0 4px hsl(var(--primary) / 0.25);
+    cursor: pointer;
+  }
 }
+
 
 @layer utilities {
   /* Ancho máximo consistente + paddings laterales */
@@ -116,6 +207,10 @@
 .dark .reco-card {
   border-color: hsl(var(--border));
 }
+/* Ocultar spinners si prefieres (chrome/edge/safari) */
+.no-spinner::-webkit-outer-spin-button,
+.no-spinner::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.no-spinner { -moz-appearance: textfield; } /* firefox */
 }
 
 

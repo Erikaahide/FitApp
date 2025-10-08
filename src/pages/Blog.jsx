@@ -55,9 +55,9 @@ export default function Blog() {
 
   const recomendaciones = {
     suplementos: [
-      { name: "Bridman", url: "https://bridman.mx/" },
+      { name: "Bridman", url: "https://mx.birdman.com/?utm_source=google&utm_medium=bus&utm_campaign=defense&utm_content=brand&utm_source=google&utm_medium=cpc&utm_campaign=&tw_source=google&tw_adid=719698760765&tw_campaign=21868115756&tw_kwdid=kwd-98802809&gad_source=1&gad_campaignid=21868115756&gbraid=0AAAAACXrlUKFiL28XiueHVsAXlAsn0ZNI&gclid=Cj0KCQjw9JLHBhC-ARIsAK4Phcq5qZCxvTf01MGOJSEl7VGOenTkPW7v8xpt71tNhlYJfZ5zxqCbbWgaAvf0EALw_wcB" },
       { name: "RAW Nutrition", url: "https://getrawnutrition.com/" },
-      { name: "Bum Energy", url: "https://bumenergy.com/" },
+      { name: "Bum Energy", url: "https://getrawnutrition.mx/collections/bum-energy-drinks" },
       { name: "Dragon Pharma", url: "https://dragonpharma.com/" },
       { name: "GNC", url: "https://www.gnc.com.mx/" },
       { name: "Omega 3", url: "https://solanum.com.mx/producto/2880/" },
