@@ -41,7 +41,7 @@ export default function Navbar() {
     <>
       {/* Top bar (desktop/tablet) */}
       <header className="sticky top-0 z-40 hidden md:block">
-        <div className="container max-w-5xl py-3">
+        <div className="w-full py-3 px-4">
           <div className="h-16 rounded-2xl border bg-muted px-4 flex items-center justify-between">
             {/* Marca -> Home */}
             <div className="flex items-center gap-2">

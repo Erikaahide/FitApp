@@ -7,8 +7,8 @@
   --bg: 0 0% 100%;
   --fg: 225 15% 12%;
   --card: 0 0% 100%;
-  --muted: 0 0% 92%;   /* gris suave del fondo de la nav */
-  --border: 0 0% 86%;
+  --muted: 0 0% 96%;   /* gris suave del fondo de la nav */
+  --border: 0 0% 90%;
   --primary: 90 53% 65%;
   --primary-soft: 90 53% 90%;
     /* tono hover para links/botones */
@@ -17,8 +17,8 @@
 .dark {
   --bg: 225 15% 8%;
   --fg: 0 0% 98%;
-  --card: 225 15% 10%;
-  --muted: 225 16% 16%;
+  --card: 225 15% 8%;  /* Cards más oscuras */
+  --muted: 225 16% 12%; /* Muted más oscuro */
   --border: 225 14% 22%;
   --primary: 90 53% 65%;
   --primary-soft: 90 53% 20%;

@@ -177,10 +177,11 @@ export default function Calculator() {
                 <option value="unspecified">No especificado</option>
               </select>
             </label>
-
+            <div className="flex flex-col gap-2 md:flex-row flex-wrap w-full">
             <NumField label="Edad" suffix="años" value={age} setValue={setAge} min={14} max={90} />
             <NumField label="Altura" suffix={units === "metric" ? "cm" : "in"} value={height} setValue={setHeight} min={120} max={units === "metric" ? 220 : 87} />
             <NumField label="Peso" suffix={units === "metric" ? "kg" : "lb"} value={weight} setValue={setWeight} min={35} max={units === "metric" ? 160 : 350} />
+            </div>
             <label className="col-span-2 flex items-center gap-3">
               <span className="shrink-0 text-sm font-medium w-28">Grasa %</span>
               <input className="input input--num no-spinner" type="number" inputMode="decimal" placeholder="Opcional" value={bodyFat} onChange={(e) => setBodyFat(e.target.value)} min={0} max={70} />
