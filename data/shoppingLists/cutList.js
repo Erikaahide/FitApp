@@ -9,48 +9,45 @@ const slug = (s) =>
       key: 'proteinas',
       label: 'Proteínas',
       items: [
-        'Huevo',
-        'Clara de huevo',
-        'Queso panela',
-        'Queso Oaxaca',
-        'Pechuga de pollo',
-        'Jamón de pechuga de pavo',
-        'Atún de lata en agua',
-        'Yogurt griego sin azúcar',
-        'Milanesa de res',
-        'Filete de pescado',
-        'Salmón',
-        'Atún',
+        "Huevo",
+        "Clara de huevo",
+        "Atún",
+        "Salmón",
+        "Pechuga de pollo",
+        "Milanesa de res",
+        "Filete de pescado blanco",
+        "Yogurt griego sin azúcar",
+        "Jamón de pechuga de pavo",
+        "Queso cottage bajo en grasa",
       ],
     },
     {
       key: 'hidratos',
       label: 'Hidratos de carbono',
       items: [
-        'Tortilla de maíz',
-        'Arroz',
-        'Pasta',
-        'Pan Cero Cero Bimbo',
-        'Pan integral',
+        'Tortilla ligeras',
+        'Pasta Integral',
+        'Crema de arroz',
         'Rice cakes',
-        'Granola sin azúcar',
+        'Chayote',
+        'Coliflor',
       ],
     },
     {
       key: 'lipidos',
       label: 'Lípidos',
       items: [
-        'Aguacate',
-        'Mantequilla pura de vaca',
-        'Crema ácida',
+          'Mantequilla pura de vaca',
+          'Aguacate',
+          'Frijoles',
       ],
     },
     {
       key: 'verduras',
       label: 'Verduras libres (sin cantidad)',
       items: [
-        'Ejotes', 'Nopales', 'Espinacas', 'Acelgas', 'Coliflor', 'Brócoli',
-        'Zanahoria', 'Chayote', 'Espárragos', 'Champiñones', 'Lechuga',
+        'Ejotes', 'Nopales', 'Espinacas', 'Brócoli',
+        'Espárragos', 'Champiñones', 'Lechuga',
         'Cebolla', 'Jitomate', 'Pimiento morrón',
       ],
     },
@@ -58,8 +55,8 @@ const slug = (s) =>
       key: 'frutas',
       label: 'Frutas',
       items: [
-        'Plátano', 'Manzana', 'Fresas', 'Arandanos', 'Mandarina', 'Naranja',
-        'Guayaba', 'Uvas', 'Papaya', 'Melón', 'Sandía', 'Piña',
+        'Manzana', 'Fresas', 'Arandanos', 'Mandarina', 'Naranja',
+        'Guayaba', 'Uvas', 'Papaya', 'Sandía',
       ],
     },
     {
@@ -67,7 +64,6 @@ const slug = (s) =>
       label: 'Grasas con proteína',
       items: [
         'Almendras', 'Cacahuates', 'Nueces enteras',
-        'Crema de cacahuate sin azúcar','Crema de almendra sin azúcar',
       ],
     },
     {
@@ -90,4 +86,6 @@ const slug = (s) =>
   }));
   
   export const ALL_ITEMS = SHOPPING_DATA.flatMap(c => c.items);
+  export const CUT_LIST = SHOPPING_DATA;
+
   
