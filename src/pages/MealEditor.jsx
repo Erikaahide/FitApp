@@ -1,49 +1,69 @@
 import { useParams } from "react-router-dom";
+import { usePlan } from "../context/PlanContext";
+
+// Importa las listas
+import { maintainList } from "../../data/maintainList.js";
+import { ketoList } from "../../data/ketoList.js";
+import { cutList } from "../../data/cutList.js";
+import { bulkList } from "../../data/bulkList.js";
+
+const plans = {
+  maintain: maintainList,
+  keto: ketoList,
+  cut: cutList,
+  bulk: bulkList,
+};
 
 export default function MealEditor() {
   const { name } = useParams();
+  const { activePlan } = usePlan();
+  const planData = plans[activePlan];
+  const mealData = planData?.[name.toLowerCase()];
+
+  if (!mealData) {
+    return (
+      <section className="container-app py-10 text-center">
+        <p className="text-lg text-[hsl(var(--fg))]">
+          No hay datos para esta comida ({name}) en el plan <b>{activePlan}</b>.
+        </p>
+      </section>
+    );
+  }
 
   return (
     <section className="container-app py-10 bg-[hsl(var(--bg))] text-[hsl(var(--fg))] transition-colors duration-300">
-      <h2 className="text-3xl font-bold mb-8 capitalize">{name}</h2>
+      <h2 className="text-3xl font-bold mb-8 capitalize">
+        {name} · <span className="text-[hsl(var(--primary))]">{activePlan}</span>
+      </h2>
 
-      <div className="space-y-10">
-        {/* === PROTEÍNA === */}
-        <Category title="Proteína" color="bg-[hsl(var(--cat-protein))]">
-          <FoodCard name="Huevo" portion="1 pz" img="huevo.jpg" />
-          <FoodCard name="Queso panela" portion="30 g" img="queso.jpg" />
-          <FoodCard name="Yogurt griego sin azúcar" portion="1/4 taza" img="yogurt.jpg" />
+      {Object.entries(mealData).map(([category, items]) => (
+        <Category key={category} title={capitalize(category)}>
+          {items.map((food, idx) => (
+            <FoodCard
+              key={idx}
+              name={food.name}
+              portion={food.portion}
+              img={food.img || "placeholder.jpg"}
+            />
+          ))}
         </Category>
-
-        {/* === HIDRATOS DE CARBONO === */}
-        <Category title="Hidratos de carbono" color="bg-[hsl(var(--cat-carbs))]">
-          <FoodCard name="Tortilla de maíz" portion="1 pz" img="tortilla.jpg" />
-          <FoodCard name="Arroz cocido" portion="50 g" img="arroz.jpg" />
-          <FoodCard name="Pan zero" portion="1 pz" img="pan.jpg" />
-        </Category>
-
-        {/* === LÍPIDOS === */}
-        <Category title="Lípidos" color="bg-[hsl(var(--cat-lipids))]">
-          <FoodCard name="Mantequilla" portion="1 cda" img="mantequilla.jpg" />
-          <FoodCard name="Crema ácida" portion="1 cda" img="crema.jpg" />
-        </Category>
-
-        {/* === VERDURAS === */}
-        <Category title="Verduras" color="bg-[hsl(var(--cat-veggies))]">
-          <FoodCard name="Espinacas" portion="1 taza" img="espinacas.jpg" />
-          <FoodCard name="Nopales" portion="1/2 taza" img="nopales.jpg" />
-          <FoodCard name="Brócoli" portion="1 taza" img="brocoli.jpg" />
-        </Category>
-      </div>
+      ))}
     </section>
   );
 }
 
-/* === SUBCOMPONENTES === */
-function Category({ title, color, children }) {
+function Category({ title, children }) {
+  const colors = {
+    Proteina: "bg-[hsl(var(--cat-protein))]",
+    Hidratos: "bg-[hsl(var(--cat-carbs))]",
+    Lipidos: "bg-[hsl(var(--cat-lipids))]",
+    Verduras: "bg-[hsl(var(--cat-veggies))]",
+  };
+  const bgColor = colors[title] || "bg-[hsl(var(--card))]";
+
   return (
-    <div className={`p-6 rounded-2xl shadow-soft border border-[hsl(var(--border))] ${color}`}>
-      <h3 className="text-xl font-semibold mb-4 text-[hsl(var(--fg))]">{title}</h3>
+    <div className={`p-6 mb-10 rounded-2xl border border-[hsl(var(--border))] shadow-soft ${bgColor}`}>
+      <h3 className="text-xl font-semibold mb-4">{title}</h3>
       <div className="grid grid-autofit gap-4">{children}</div>
     </div>
   );
@@ -59,9 +79,11 @@ function FoodCard({ name, portion, img }) {
       />
       <h4 className="font-semibold text-sm">{name}</h4>
       <p className="text-xs opacity-80 mb-2">Porción: {portion}</p>
-      <button className="btn-primary w-full text-sm py-1.5 rounded-xl">
-        + Agregar
-      </button>
+      <button className="btn-primary w-full text-sm py-1.5 rounded-xl">+ Agregar</button>
     </div>
   );
+}
+
+function capitalize(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
 }
