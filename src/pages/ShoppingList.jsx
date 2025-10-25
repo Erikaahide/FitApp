@@ -113,8 +113,8 @@ export default function ShoppingList() {
           >
             <option value="bulk">Bulk</option>
             <option value="maintain">Maintain</option>
-            <option value="cut">Cut</option>
-            <option value="keto">Keto</option>
+            <option value="cut">Cut sin lácteos</option>
+            <option value="keto">Keto sin lácteos</option>
           </select>
           <span className="text-sm text-foreground/70">
             {selectedCount}/{totalCount} seleccionados

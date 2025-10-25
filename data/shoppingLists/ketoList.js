@@ -65,14 +65,14 @@ const slug = (s) =>
         "Almendras",
         "Nueces enteras",
         "Cacahuates naturales",
-        "Cremas keto (almendra o cacahuate sin azúcar)"
+        "Cremas keto (almendra o cacahuate)"
       ],
     },
     {
       key: 'snacks',
       label: 'Snacks extra',
       items: [
-        'Gelatina light', 'Café negro', 'Monk fruit',
+        'Gelatina casera', 'Café negro', 'Monk fruit',
       ],
     },
   ];
