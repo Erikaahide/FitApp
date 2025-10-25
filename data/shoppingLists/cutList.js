@@ -16,9 +16,7 @@ const slug = (s) =>
         "Pechuga de pollo",
         "Milanesa de res",
         "Filete de pescado blanco",
-        "Yogurt griego sin azúcar",
         "Jamón de pechuga de pavo",
-        "Queso cottage bajo en grasa",
       ],
     },
     {
@@ -37,7 +35,6 @@ const slug = (s) =>
       key: 'lipidos',
       label: 'Lípidos',
       items: [
-          'Mantequilla pura de vaca',
           'Aguacate',
           'Frijoles',
       ],
@@ -71,7 +68,7 @@ const slug = (s) =>
       label: 'Snacks extra',
       items: [
         'Gelatina light', 'Chicles sin azúcar', 'Té verde',
-        'Café negro', 'Leche light','Stevia', 'Matcha', 'Snacks sin azúcar', 'Refresco sin azúcar ni calorías'
+        'Café negro','Stevia', 'Matcha', 'Snacks sin azúcar', 'Refresco sin azúcar ni calorías'
       ],
     },
   ];
