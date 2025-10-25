@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import Calculator from './pages/Calculator';
 import PlanSummary from './pages/PlanSummary';
 import DayDetail from './pages/DayDetail';
+import MealEditor from "./pages/MealEditor";
 import ShoppingList from './pages/ShoppingList';
 import Blog from './pages/Blog';
 
@@ -21,6 +22,7 @@ export default function App() {
           <Route path="/calculator" element={<Calculator />} />
           <Route path="/plan" element={<PlanSummary />} />
           <Route path="/day" element={<DayDetail />} />
+          <Route path="/meal/:name" element={<MealEditor />} />
           <Route path="/shopping-list" element={<ShoppingList />} />
           <Route path="/blog" element={<Blog />} />
         </Routes>

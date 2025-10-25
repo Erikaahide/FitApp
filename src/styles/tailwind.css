@@ -7,70 +7,110 @@
   --bg: 0 0% 100%;
   --fg: 225 15% 12%;
   --card: 0 0% 100%;
-  --muted: 0 0% 96%;   /* gris suave del fondo de la nav */
+  --muted: 0 0% 96%;             /* gris suave del fondo de la nav */
   --border: 0 0% 90%;
   --primary: 90 53% 65%;
-  --primary-soft: 90 53% 90%;
-    /* tono hover para links/botones */
+  --primary-soft: 90 53% 90%;   /* tono hover para links/botones */
   --primary-strong: 90 53% 45%;
+  --meal-desayuno: 46 100% 93%; /* amarillo claro */
+  --meal-snack: 270 100% 95%;   /* violeta claro */
+  --meal-comida: 310 100% 96%;  /* rosado claro */
+  --meal-cena: 200 100% 94%;    /* azul claro */
+   /* === Colores por categoría === */
+   --cat-protein: 90 53% 90%;       /* verde suave */
+   --cat-carbs: 45 100% 92%;        /* amarillo claro */
+   --cat-lipids: 30 100% 91%;       /* beige suave */
+   --cat-veggies: 140 45% 88%;      /* verde hoja */
 }
+
 .dark {
   --bg: 225 15% 8%;
   --fg: 0 0% 98%;
-  --card: 225 15% 8%;  /* Cards más oscuras */
-  --muted: 225 16% 12%; /* Muted más oscuro */
+  --card: 225 15% 8%;              /* Cards más oscuras */
+  --muted: 225 16% 12%;            /* Muted más oscuro */
   --border: 225 14% 22%;
   --primary: 90 53% 65%;
-  --primary-soft: 90 53% 20%;
-    /* En dark, luz para el hover */
-    --primary-strong: 90 53% 72%;
-  
+  --primary-soft: 90 53% 20%;      /* En dark, luz para el hover */
+  --primary-strong: 90 53% 72%;
+  --meal-desayuno: 46 100% 16%;    /* tonos más profundos en dark */
+  --meal-snack: 270 30% 20%;
+  --meal-comida: 310 30% 22%;
+  --meal-cena: 200 30% 18%;
+  --cat-protein: 90 30% 20%;       /* verdes más profundos */
+  --cat-carbs: 45 35% 18%;
+  --cat-lipids: 30 25% 17%;
+  --cat-veggies: 140 25% 15%;
 }
 
 /* Base global */
 @layer base {
-  * { @apply border-border; }
-  html, body, #root { height: 100%; }
-  body { @apply bg-background text-foreground antialiased; }
-  * { accent-color: hsl(var(--primary)); }
+  * {
+    @apply border-border;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+
+  * {
+    accent-color: hsl(var(--primary));
+  }
 }
 
 @layer components {
   .btn {
-    @apply inline-flex items-center justify-center rounded-2xl px-4 py-2 font-medium shadow-soft
-           transition active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2
-           focus-visible:ring-primary/60;
+    @apply inline-flex items-center justify-center rounded-2xl px-4 py-2 font-medium shadow-soft transition active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60;
   }
-  .btn-primary { @apply bg-primary text-white hover:bg-primary/90; }
-  .btn-ghost   { @apply bg-transparent hover:bg-muted; }
-  .card        { @apply rounded-2xl bg-card border p-4 shadow-soft; }
-  .link        { @apply hover:underline underline-offset-4; }
+
+  .btn-primary {
+    @apply bg-primary text-white hover:bg-primary/90;
+  }
+
+  .btn-ghost {
+    @apply bg-transparent hover:bg-muted;
+  }
+
+  .card {
+    @apply rounded-2xl bg-card border p-4 shadow-soft;
+  }
+
+  .link {
+    @apply hover:underline underline-offset-4;
+  }
 
   /* Campos de texto / número */
   .input {
-    @apply w-full px-3 py-2 rounded-2xl border text-sm outline-none transition
-           placeholder-gray-400 dark:placeholder-gray-500;
+    @apply w-full px-3 py-2 rounded-2xl border text-sm outline-none transition placeholder-gray-400 dark:placeholder-gray-500;
     background-color: hsl(var(--card));
     color: hsl(var(--fg));
     border-color: hsl(var(--border));
   }
+
   .input:focus {
     @apply ring-2;
     --tw-ring-color: hsl(var(--primary));
     border-color: transparent;
   }
 
-    /* Números: más ancho + espacio para el spinner */
-    .input--num {
-      min-width: 2rem;         /* evita pills mini */
-      padding-right: 1rem;  /* deja hueco al spinner */
-      text-align: center;      /* opcional: centrado del valor */
-    }
+  /* Números: más ancho + espacio para el spinner */
+  .input--num {
+    min-width: 2rem;
+    /* evita pills mini */
+    padding-right: 1rem;
+    /* deja hueco al spinner */
+    text-align: center;
+    /* opcional: centrado del valor */
+  }
 
   /* Select con caret consistente */
   .select {
-    @apply w-full px-3 py-2 rounded-2xl border text-sm outline-none transition
-           bg-[hsl(var(--card))] text-[hsl(var(--fg))];
+    @apply w-full px-3 py-2 rounded-2xl border text-sm outline-none transition bg-[hsl(var(--card))] text-[hsl(var(--fg))];
     border-color: hsl(var(--border));
     background-image:
       linear-gradient(45deg, transparent 50%, hsl(var(--fg)) 50%),
@@ -84,6 +124,7 @@
     background-repeat: no-repeat;
     appearance: none;
   }
+
   .select:focus {
     @apply ring-2;
     --tw-ring-color: hsl(var(--primary));
@@ -92,27 +133,31 @@
 
   /* Botones neutrales y primarios (usando tus vars, no colores de Tailwind) */
   .btn {
-    @apply inline-flex items-center justify-center rounded-2xl px-4 py-2 text-sm font-medium
-           border shadow-soft transition active:scale-[0.98] focus-visible:outline-none
-           focus-visible:ring-2;
+    @apply inline-flex items-center justify-center rounded-2xl px-4 py-2 text-sm font-medium border shadow-soft transition active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2;
     background-color: hsl(var(--card));
     color: hsl(var(--fg));
     border-color: hsl(var(--border));
     --tw-ring-color: hsl(var(--primary) / 0.6);
   }
+
   .btn-primary {
     background-color: hsl(var(--primary));
     color: white;
     border-color: transparent;
   }
-  .btn-primary:hover { filter: brightness(0.95); }
+
+  .btn-primary:hover {
+    filter: brightness(0.95);
+  }
 
   /* Chips (para presets) */
-  .chip { @apply px-3 py-1 rounded-full border text-xs font-medium cursor-pointer select-none; 
+  .chip {
+    @apply px-3 py-1 rounded-full border text-xs font-medium cursor-pointer select-none;
     background-color: hsl(var(--card));
     color: hsl(var(--fg));
     border-color: hsl(var(--border));
   }
+
   .chip--active {
     background-color: hsl(var(--primary));
     color: white;
@@ -120,17 +165,32 @@
   }
 
   /* Slider (range) verde */
-  .range { @apply w-full appearance-none h-2 rounded-full; background: hsl(var(--border)); }
-  .range:focus { outline: none; }
+  .range {
+    @apply w-full appearance-none h-2 rounded-full;
+    background: hsl(var(--border));
+  }
+
+  .range:focus {
+    outline: none;
+  }
+
   .range::-webkit-slider-thumb {
-    appearance: none; width: 18px; height: 18px; border-radius: 9999px;
-    background: hsl(var(--primary)); border: 2px solid #fff;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 9999px;
+    background: hsl(var(--primary));
+    border: 2px solid #fff;
     box-shadow: 0 0 0 4px hsl(var(--primary) / 0.25);
     cursor: pointer;
   }
+
   .range::-moz-range-thumb {
-    width: 18px; height: 18px; border-radius: 9999px;
-    background: hsl(var(--primary)); border: 2px solid #fff;
+    width: 18px;
+    height: 18px;
+    border-radius: 9999px;
+    background: hsl(var(--primary));
+    border: 2px solid #fff;
     box-shadow: 0 0 0 4px hsl(var(--primary) / 0.25);
     cursor: pointer;
   }
@@ -138,79 +198,120 @@
 
 
 @layer utilities {
+
   /* Ancho máximo consistente + paddings laterales */
-  .container-app { @apply container max-w-6xl px-4 md:px-6; }
+  .container-app {
+    @apply container max-w-6xl px-4 md:px-6;
+  }
 
   /* Grid responsivo que acomoda “pills” automáticamente */
-  .grid-autofit { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+  .grid-autofit {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+
   .link {
     @apply no-underline transition-colors;
     color: hsl(var(--primary));
   }
+
   .link:hover {
     color: hsl(var(--primary-strong));
     text-decoration: none;
   }
-/* —— Recos: estilos scoped para NO afectar otras listas —— */
-.reco-list {
-  list-style: none;           /* quitamos bullets nativos */
-  padding-left: 0;
+
+  /* —— Recos: estilos scoped para NO afectar otras listas —— */
+  .reco-list {
+    list-style: none;
+    /* quitamos bullets nativos */
+    padding-left: 0;
+  }
+
+  /* Bullet custom: puntito con ring suave */
+  .reco-list .reco-item {
+    display: flex;
+    align-items: start;
+    gap: 0.6rem;
+    position: relative;
+  }
+
+  .reco-list .reco-item::before {
+    content: "";
+    flex: none;
+    margin-top: 0.5rem;
+    /* alinea con texto de 2 líneas */
+    width: 10px;
+    height: 10px;
+    border-radius: 9999px;
+    background: hsl(var(--primary));
+    box-shadow:
+      0 0 0 3px hsl(var(--primary) / 0.15),
+      0 0 0 6px hsl(var(--primary) / 0.05);
+  }
+
+  /* Link más atractivo (solo dentro de recomendaciones) */
+  .reco-list .link {
+    text-underline-offset: 3px;
+    text-decoration-thickness: 2px;
+    color: hsl(var(--fg));
+    text-decoration-color: hsl(var(--primary) / 0.35);
+    transition: transform 150ms ease, color 150ms ease, text-decoration-color 150ms ease;
+  }
+
+  .dark .reco-list .link {
+    color: hsl(0 0% 98%);
+  }
+
+  .reco-list .link:hover {
+    color: hsl(var(--primary));
+    text-decoration-color: hsl(var(--primary));
+    transform: translateY(-1px);
+  }
+
+  /* Tarjetas sutiles y consistentes */
+  .reco-card {
+    border: 1px solid hsl(var(--border));
+    background-image:
+      radial-gradient(40% 60% at 0% 0%, hsl(var(--primary) / 0.05), transparent 60%),
+      radial-gradient(50% 40% at 100% 0%, hsl(var(--primary) / 0.04), transparent 60%);
+  }
+
+  .dark .reco-card {
+    border-color: hsl(var(--border));
+  }
+
+  /* Ocultar spinners si prefieres (chrome/edge/safari) */
+  .no-spinner::-webkit-outer-spin-button,
+  .no-spinner::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  .no-spinner {
+    -moz-appearance: textfield;
+  }
+
+  /* firefox */
 }
 
-/* Bullet custom: puntito con ring suave */
-.reco-list .reco-item {
-  display: flex;
-  align-items: start;
-  gap: 0.6rem;
-  position: relative;
+/* Animaciones de entrada/salida para páginas */
+.page-enter {
+  opacity: 0;
+  transform: translateY(10px);
 }
 
-.reco-list .reco-item::before {
-  content: "";
-  flex: none;
-  margin-top: 0.5rem;         /* alinea con texto de 2 líneas */
-  width: 10px;
-  height: 10px;
-  border-radius: 9999px;
-  background: hsl(var(--primary));
-  box-shadow:
-    0 0 0 3px hsl(var(--primary) / 0.15),
-    0 0 0 6px hsl(var(--primary) / 0.05);
+.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.3s ease;
 }
 
-/* Link más atractivo (solo dentro de recomendaciones) */
-.reco-list .link {
-  text-underline-offset: 3px;
-  text-decoration-thickness: 2px;
-  color: hsl(var(--fg));
-  text-decoration-color: hsl(var(--primary) / 0.35);
-  transition: transform 150ms ease, color 150ms ease, text-decoration-color 150ms ease;
+.page-exit {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-.dark .reco-list .link {
-  color: hsl(0 0% 98%);
+.page-exit-active {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
 }
-
-.reco-list .link:hover {
-  color: hsl(var(--primary));
-  text-decoration-color: hsl(var(--primary));
-  transform: translateY(-1px);
-}
-
-/* Tarjetas sutiles y consistentes */
-.reco-card {
-  border: 1px solid hsl(var(--border));
-  background-image:
-    radial-gradient(40% 60% at 0% 0%, hsl(var(--primary) / 0.05), transparent 60%),
-    radial-gradient(50% 40% at 100% 0%, hsl(var(--primary) / 0.04), transparent 60%);
-}
-.dark .reco-card {
-  border-color: hsl(var(--border));
-}
-/* Ocultar spinners si prefieres (chrome/edge/safari) */
-.no-spinner::-webkit-outer-spin-button,
-.no-spinner::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
-.no-spinner { -moz-appearance: textfield; } /* firefox */
-}
-
-
